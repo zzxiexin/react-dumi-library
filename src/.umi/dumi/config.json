@@ -1,0 +1,83 @@
+{
+  "menus": {
+    "en-US": {
+      "*": [
+        {
+          "title": "基础",
+          "path": "/guide/blog",
+          "meta": {
+            "order": 1,
+            "__fallback": true
+          },
+          "children": [
+            {
+              "path": "/guide/blog/test",
+              "title": "我是测试文档",
+              "meta": {}
+            }
+          ]
+        },
+        {
+          "path": "/",
+          "title": "Index",
+          "meta": {}
+        },
+        {
+          "title": "Components",
+          "path": "/components",
+          "meta": {},
+          "children": [
+            {
+              "path": "/components/button",
+              "title": "按钮",
+              "meta": {}
+            }
+          ]
+        },
+        {
+          "title": "Guide",
+          "path": "/guide",
+          "meta": {},
+          "children": [
+            {
+              "path": "/guide",
+              "title": "介绍",
+              "meta": {}
+            },
+            {
+              "path": "/guide/upgrade",
+              "title": "v2 to v3",
+              "meta": {}
+            }
+          ]
+        },
+        {
+          "title": "Hooks",
+          "path": "/hooks/use-query/doc",
+          "meta": {},
+          "children": [
+            {
+              "path": "/hooks/use-query/doc/idnex",
+              "title": "Idnex",
+              "meta": {}
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "locales": [
+    {
+      "name": "en-US",
+      "label": "English"
+    }
+  ],
+  "navs": {},
+  "title": "react-ui-dumi-library",
+  "mode": "doc",
+  "repository": {
+    "url": "",
+    "branch": "master"
+  },
+  "theme": {}
+}

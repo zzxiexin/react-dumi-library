@@ -4,9 +4,9 @@ hero:
   description: A react library developed with dumi
   actions:
     - text: 组件
-      link: /
+      link: /component
     - text: Hooks
-      link: /
+      link: /hooks
 features:
   - title: Hello
     emoji: 💎

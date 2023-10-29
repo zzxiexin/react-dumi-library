@@ -1,6 +1,6 @@
 ---
-title: Button
-subtitle: 按钮
+title: Icon
+subtitle: 图标
 demo:
   cols: 2
 group:

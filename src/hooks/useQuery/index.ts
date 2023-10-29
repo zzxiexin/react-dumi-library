@@ -1,7 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { message } from 'antd';
 import { useCallback, useEffect, useState } from 'react';
-import type { FetchType, TConfig } from './index.d';
+
+export type TConfig = {
+  isManual?: boolean;
+  successKey?: string;
+  errorKey?: string;
+  dataKey?: string;
+};
+
+export type FetchType<TParams extends any[], TData> = (
+  ...params: TParams
+) => Promise<TData>;
 
 const defConfig: TConfig = {
   isManual: false,

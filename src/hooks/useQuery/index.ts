@@ -50,6 +50,9 @@ const useQuery = <TParams extends any[], TData>(
   const query = useCallback(
     async (...params: TParams) => {
       try {
+        if (loading) {
+          return alert('不要重复请求');
+        }
         console.log('send request');
         setLoading(true);
         const res = await fetch(...params);
@@ -65,14 +68,17 @@ const useQuery = <TParams extends any[], TData>(
           callback: errCallback = defConfig.error?.callback,
         } = (error || defConfig.error) as Required<errorType>;
         if (handleGetProps(flag as string[], res)) {
+          setLoading(false);
           // eslint-disable-next-line @typescript-eslint/no-unused-expressions
           callback && callback(handleGetProps(msg as string[], res));
           return setData(handleGetProps(dataKey as string[], res));
         }
+        setLoading(false);
         return (
           errCallback && errCallback(handleGetProps(errMsg as string[], res))
         );
       } catch (error) {
+        setLoading(false);
         console.log(error);
       }
     },

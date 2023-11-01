@@ -12,5 +12,6 @@
       "react-ui-library/*": ["src/*", "*"]
     }
   },
-  "include": [".dumirc.ts", "src/**/*"]
+  "include": [".dumirc.ts", "src/**/*"],
+  "exclude": ["src/**/demo"]
 }

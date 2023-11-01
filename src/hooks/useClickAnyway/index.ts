@@ -9,10 +9,10 @@ function useClickAntway<T extends Event = Event>(
 ) {
   useEffect(() => {
     const handleClick = (event: Event) => {
-      if (!ref?.current) {
+      if (!(ref as any)?.current) {
         throw new Error('ref current is null');
       } else {
-        if (!ref.current?.contains(event.target as HTMLDivElement)) {
+        if (!(ref as any)?.current?.contains(event.target as HTMLDivElement)) {
           click(event as T);
         }
       }

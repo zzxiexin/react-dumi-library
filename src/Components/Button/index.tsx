@@ -1,141 +1,193 @@
+import { SyncOutlined } from '@ant-design/icons';
 import clsx from 'clsx';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
-import * as CssConfigs from '../constant';
+import * as styleConfigs from '../utils';
 
 type ButtonProps = React.HTMLAttributes<
   HTMLAnchorElement | HTMLButtonElement
 > & {
   /**按钮类型 */
   type?: 'primary' | 'dashed' | 'default' | 'danger' | 'link' | 'text';
-  /** icon图标 */
-  icon?: React.ReactNode;
   /**按钮大小 */
   size: 'large' | 'default' | 'small';
   /** 禁用 */
   disabled?: boolean;
-  /** 点击后，下次能点击的时间间隔，防止重复点击, 如果是true, 间隔默认是1s  */
-  wait?: number | boolean;
-  /**加载态 */
-  loading?: boolean;
+  /** 防抖点击  */
+  debounce?: number | boolean;
+  debounceNode: React.ReactNode;
+  /** 幽灵按钮 */
+  ghost?: boolean;
   /** 块级按钮 */
   block?: boolean;
   children?: React.ReactNode;
-  /** 圆形按钮 */
-  circle?: boolean;
-  /** 是否幽灵按钮 */
-  ghost?: boolean;
-  htmlType?: 'submit' | 'reset' | 'button' | undefined;
+  /** icon图标 */
+  icon?: React.ReactNode;
+  /**加载态 */
+  loading?: boolean;
+  /**形状 */
+  shape?: 'circle';
 };
 
 const StyledButton = styled.button`
-  color: inherit;
-  cursor: pointer;
-  margin: 0;
-  display: inline-flex;
-  box-sizing: border-box;
+  border: 1px solid transparent;
+  color: ${styleConfigs.black};
+  background-color: ${styleConfigs.white};
+  border-color: ${styleConfigs.gray};
+  appearance: button;
+  text-shadow: none;
+  box-shadow: none;
   outline: 0;
+  line-height: 1.499;
   position: relative;
-  align-items: center;
-  user-select: none;
-  justify-content: center;
-  text-decoration: none;
-  background-color: transparent;
-  appearance: none;
-  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
   font-weight: 400;
   white-space: nowrap;
-  background-image: none;
-  transition: all 0.3s ease;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   user-select: none;
   touch-action: manipulation;
-  font-size: 14px;
-  border-radius: 2px;
-  border: 1px solid transparent;
-  padding: 0px 16px;
   height: 32px;
+  padding: 0 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  text-transform: none;
+  overflow: visible;
+  box-sizing: border-box;
 
-  /** type类展示 */
-  &.default {
-    background: ${CssConfigs.white};
-    border: ${CssConfigs.border};
-    &.default:hover,
-    &.default:active {
+  /**块级按钮 */
+  &.block {
+    width: 100%;
+  }
+
+  /** 背景 */
+  &.default-btn {
+    background: ${styleConfigs.white};
+    border-color: ${styleConfigs.gray};
+    color: ${styleConfigs.black};
+    &.default-btn:hover {
       color: #75a5ff;
       border-color: #75a5ff;
     }
-  }
-  &.primary {
-    background: ${CssConfigs.primary};
-    color: ${CssConfigs.white};
-    &.primary:hover,
-    &.primary:active {
-      color: #fff;
-      background-color: #75a5ff;
+    &.default-btn.ghost {
+      background: transparent;
+      color: white;
+      border-color: white;
+      text-shadow: none;
+    }
+    &.default-btn.ghost:hover {
       border-color: #75a5ff;
+      color: #75a5ff;
+    }
+    &.default-btn.circle {
+      border-radius: 50%;
     }
   }
 
-  &.danger {
-    background: ${CssConfigs.danger};
-    border: ${CssConfigs.border};
-    color: ${CssConfigs.white};
-    &.danger:hover,
-    &.danger:active {
-      color: #fff;
-      background-color: #ffaca6;
-      border-color: #ffaca6;
+  &.primary {
+    background: ${styleConfigs.primary};
+    border-color: ${styleConfigs.primary};
+    color: ${styleConfigs.white};
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 0 rgba(105, 73, 73, 0.045);
+    &.primary:hover {
+      background-color: #75a5ff;
+      border-color: #75a5ff;
+    }
+    &.primary.ghost {
+      background: transparent;
+      color: #4c84ff;
+      border-color: #4c84ff;
+      text-shadow: none;
+    }
+    &.primary.ghost:hover {
+      border-color: #75a5ff;
+      color: #75a5ff;
+    }
+    &.primary.circle {
+      border-radius: 50%;
     }
   }
 
   &.dashed {
-    border: ${CssConfigs.border};
+    background: ${styleConfigs.white};
+    border-color: ${styleConfigs.gray};
+    color: ${styleConfigs.black};
     border-style: dashed;
     &.dashed:hover {
       color: #75a5ff;
       border-color: #75a5ff;
     }
+    &.dashed.ghost {
+      background: transparent;
+      color: white;
+      border-color: white;
+      text-shadow: none;
+    }
+    &.dashed.ghost:hover {
+      border-color: #75a5ff;
+      color: #75a5ff;
+    }
+    &.dashed.circle {
+      border-radius: 50%;
+    }
+  }
+
+  &.danger {
+    background: ${styleConfigs.danger};
+    border-color: ${styleConfigs.danger};
+    color: ${styleConfigs.white};
+    &.danger:hover {
+      background: #ffaca6;
+      border-color: #ffaca6;
+    }
+    &.danger.ghost {
+      color: #ff817d;
+      background-color: transparent;
+      border-color: #ff817d;
+      text-shadow: none;
+    }
+    &.danger.ghost:hover {
+      color: #ffaca6;
+      background-color: transparent;
+      border-color: #ffaca6;
+    }
+    &.danger.circle {
+      border-radius: 50%;
+    }
   }
 
   &.link {
-    color: #4c84ff;
-    background-color: transparent;
+    background: transparent;
     border-color: transparent;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+    color: ${styleConfigs.primary};
     &.link:hover {
       color: #75a5ff;
-      background: #fff;
-      border-color: transparent;
+    }
+    &.link.circle {
+      border-radius: 50%;
     }
   }
 
   &.text {
-    color: rgba(0, 0, 0, 0.8);
-    background-color: transparent;
+    background: transparent;
     border-color: transparent;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+    color: ${styleConfigs.black};
     &.text:hover {
       color: rgba(0, 0, 0, 0.8);
       background-color: rgba(0, 0, 0, 0.018);
-      border-color: transparent;
+    }
+    &.text.circle {
+      border-radius: 50%;
     }
   }
 
-  /** 按钮大小 */
-  &.large {
-    height: 40px;
-    padding: 0 15px;
-    font-size: 16px;
-    border-radius: 4px;
-  }
-
+  /**尺寸大小 */
   &.default {
     height: 32px;
     padding: 0 15px;
     font-size: 14px;
-    border-radius: 4px;
   }
 
   &.small {
@@ -145,93 +197,105 @@ const StyledButton = styled.button`
     border-radius: 4px;
   }
 
-  /** 按钮禁用状态 */
+  &.large {
+    height: 40px;
+    padding: 0 15px;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+  /**禁用 */
   &.disabled {
     color: rgba(0, 0, 0, 0.25);
     background-color: #f5f5f5;
-    border-color: #d9d9d9;
+    border-color: ${styleConfigs.gray};
     text-shadow: none;
-    -webkit-box-shadow: none;
     box-shadow: none;
     &.disabled:hover {
-      cursor: not-allowed;
-      background-color: #f5f5f5;
-      border-color: #d9d9d9;
-      text-shadow: none;
       color: rgba(0, 0, 0, 0.25);
+      background-color: #f5f5f5;
+      border-color: ${styleConfigs.gray};
+      text-shadow: none;
+      box-shadow: none;
+      cursor: not-allowed;
     }
   }
-
-  /**与父级同宽 */
-  &.block {
-    width: 100%;
-  }
-
-  &.circle {
-    min-width: 32px;
-    padding: 0;
-    border-radius: 50%;
-  }
-
-  &.ghost {
-    background: transparent;
-  }
 `;
+
+/**处理debounce设置为true */
+const handleDebounceBool = (debounce: number | boolean | undefined) =>
+  debounce ? (typeof debounce === 'boolean' ? 1 : debounce) : null;
 
 /** 按钮 */
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const {
-      type = 'default',
-      icon,
+      type = 'default-btn',
       size = 'default',
       disabled,
-      block,
-      className,
-      children,
-      htmlType,
-      circle,
+      debounce,
+      debounceNode = `${handleDebounceBool(debounce)}s后可点击`,
       ghost,
+      loading,
+      block,
+      children,
+      shape,
+      icon,
       onClick,
-      wait,
       ...rest
     } = props;
 
     const [canClick, setCanClick] = useState<boolean>(true);
 
-    return (
-      <StyledButton
-        {...rest}
-        ref={ref}
-        type={htmlType}
-        onClick={(e: any) => {
-          onClick?.(e);
+    /**防抖点击处理 */
+    const handleDebounceClick = (e: any) => {
+      // 防抖中和不在加载中才可以点击
+      if (canClick && !loading && !disabled) {
+        onClick?.(e);
+        if (debounce) {
           let time = 0;
-          time = wait ? (typeof wait === 'boolean' ? 1000 : wait) : 0;
+          time = debounce
+            ? typeof debounce === 'boolean'
+              ? 1000
+              : debounce * 1000
+            : 0;
           setCanClick(false);
           setTimeout(() => {
             setCanClick(true);
           }, time as number);
-        }}
-        className={clsx(
-          type,
-          size,
-          block,
-          circle,
-          ghost,
-          { disabled: !canClick || disabled, ghost },
-          className,
-        )}
-      >
+        }
+      }
+    };
+
+    /**按钮内容展示 */
+    const contentRender = useCallback(() => {
+      return (
         <>
+          {loading ? <SyncOutlined spin style={{ marginRight: 5 }} /> : null}
           {icon}
           {children}
         </>
+      );
+    }, []);
+
+    return (
+      <StyledButton
+        {...rest}
+        ref={ref}
+        onClick={handleDebounceClick}
+        /**字符串直接做classname，布尔不能直接使用需要处理 */
+        className={clsx([
+          [type, size, shape],
+          {
+            disabled: disabled || !canClick ? 'disabled' : null,
+            ghost,
+            block,
+          },
+        ])}
+      >
+        {canClick ? contentRender() : debounceNode}
       </StyledButton>
     );
   },
 );
-
-Button.displayName = 'UC-Button';
 
 export default Button;

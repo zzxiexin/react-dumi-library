@@ -1,13 +1,12 @@
 import React from 'react';
 import { Button } from 'react-ui-dumi-library';
-import GlobalStyle from '../../globalStyle';
+import '../../style.scss';
 export default function App() {
   return (
-    <>
-      <GlobalStyle></GlobalStyle>
-      <Button type="primary" id="component-demo" wait={6000}>
-        按钮
+    <div id="component-demo">
+      <Button type="primary" debounce={3} onClick={() => console.log('click')}>
+        防抖按钮
       </Button>
-    </>
+    </div>
   );
 }

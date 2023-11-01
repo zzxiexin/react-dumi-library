@@ -99,13 +99,23 @@ const StyledButton = styled.button`
 
   &.link {
     color: #4c84ff;
+    background-color: transparent;
+    border-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
     &.link:hover {
       color: #75a5ff;
+      background: #fff;
+      border-color: transparent;
     }
   }
 
   &.text {
     color: rgba(0, 0, 0, 0.8);
+    background-color: transparent;
+    border-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
     &.text:hover {
       color: rgba(0, 0, 0, 0.8);
       background-color: rgba(0, 0, 0, 0.018);

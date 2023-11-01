@@ -23,7 +23,7 @@ getUsername为异步请求函数;
 const { data, query, loading } = useQuery(getUsername);
 ```
 
-<code src="./demo/default.ts" />
+<code src="./demo/default.ts"></code>
 
 ### 手动触发
 

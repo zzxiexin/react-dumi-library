@@ -1,6 +1,8 @@
 import { defineConfig } from 'dumi';
 
 export default defineConfig({
+  base: '/react-dumi-library/',
+  publicPath: '/react-dumi-library/',
   outputPath: 'docs-dist',
   themeConfig: {
     name: 'react-ui-library',

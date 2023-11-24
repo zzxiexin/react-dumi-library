@@ -8,8 +8,8 @@
     "baseUrl": "./",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "react-ui-library": ["src"],
-      "react-ui-library/*": ["src/*", "*"]
+      "yhooks": ["src"],
+      "yhooks/*": ["src/*", "*"]
     }
   },
   "include": [".dumirc.ts", "src/**/*"],

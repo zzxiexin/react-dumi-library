@@ -21,11 +21,12 @@ export default function App() {
   };
   const { data, loading, query } = useRequest(handleQuery, {
     initParam: { a: 1 },
+    isAuto: false,
   });
   return (
     <>
       <button onClick={() => query({ b: 2 })}>
-        默认请求，点击发起手动请求
+        取消默认请求，点击发起手动请求
         {loading ? <SyncOutlined spin /> : null}
       </button>
       <div>data: {JSON.stringify(data)}</div>

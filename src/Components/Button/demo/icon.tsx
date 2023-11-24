@@ -1,6 +1,6 @@
 import { HomeOutlined } from '@ant-design/icons';
 import React from 'react';
-import { Button } from 'react-ui-dumi-library';
+import { Button } from 'yhooks';
 import '../../style.scss';
 export default function App() {
   return (

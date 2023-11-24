@@ -1,4 +1,4 @@
-name: react-ui-dumi-library
+name: yhooks
 
 on:
   push:

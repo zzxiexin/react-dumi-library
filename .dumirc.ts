@@ -1,11 +1,11 @@
 import { defineConfig } from 'dumi';
 
 export default defineConfig({
-  base: '/react-dumi-library/',
-  publicPath: '/react-dumi-library/',
+  base: '/yhooks/',
+  publicPath: '/yhooks/',
   outputPath: 'docs-dist',
   themeConfig: {
-    name: 'react-ui-library',
+    name: 'yhooks',
   },
   resolve: {
     atomDirs: [

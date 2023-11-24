@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Hooks
+  title: hooks
 title: useRequest
 group:
   title: 基础hook
@@ -17,11 +17,11 @@ demo:
 ### 默认用法（自动请求）
 
 `useRequest` 的第一个参数是一个异步函数，在组件初次加载时，会自动触发该函数执行。同时自动管理该异步函数的 `loading` , `data` , `query` 等状态。
-getUsername为异步请求函数， 对于getUsername异步请求，需统一成（对于不同项目返回结构不同的处理）:
+getTask为异步请求函数， 对于getTask异步请求，需统一成下面这种（主要是对于不同项目返回结构不同的处理）:
 
 ```js
-const getUsername = async (...params) => {
-  const res = await api.xxx(...params);
+const getTask = async (...params) => {
+  const res = await axios.get(...params);
   if (res?.success) {
     return {
       success: true,
@@ -34,7 +34,7 @@ const getUsername = async (...params) => {
   };
 };
 
-const { data, query, loading } = useRequest(getUsername);
+const { data, query, loading } = useRequest(getTask);
 ```
 
 <code src="./demo/default.tsx"></code>
@@ -44,27 +44,25 @@ const { data, query, loading } = useRequest(getUsername);
 默认设置了 `options.isAuton = true`，则 useRequest 会默认执行，如果需要不自动触发的，可以在需要的地方手动调用query;
 
 ```js
-const { data, query, loading } = useRequest(getUsername, {
+const { data, query, loading } = useRequest(getTask, {
   isAuto: false,
 });
 ```
+
+<code src="./demo/manual.tsx"></code>
 
 ### 配置onError ｜ onSuccess
 
 onError 默认是alert，当请求出现错误时，会alert出错误，如想要自定义错误的处理，传入onError，该方法会接受请求时catch到的error；onSuccess则会接受请求成功后的数据和success；
 
-### 代码演示
-
-<!-- prettier-ignore -->
-<code src="./demo/default.tsx"></code>
-
-<!-- <code src="./demo/options.tsx"></code> -->
-
+<code src="./demo/callback.tsx"></code>
 上面两个例子，我们演示了 `useRequest` 最基础的用法，接下来的我们开始逐个详细介绍 `useRequest` 的特性。
 
 ### API
 
-| 参数     | 说明                       | 类型    | 默认值 |
-| -------- | -------------------------- | ------- | ------ |
-| isAuto   | 自动请求                   | boolean | true   |
-| options? | 请求成功配置、请求失败配置 | boolean | true   |
+| 参数      | 说明     | 类型      | 默认值                              |
+| --------- | -------- | --------- | ----------------------------------- |
+| isAuto    | 自动请求 | boolean   | true                                |
+| initParam | 初始参数 | any       | {}                                  |
+| onSuccess | 成功回调 | undefined | (arg: ResponseData['data']) => void |
+| onError   | 失败回调 | undefined | (error) => void                     |

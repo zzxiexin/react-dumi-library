@@ -1,7 +1,7 @@
 import { SyncOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import React from 'react';
-import { useRequest } from 'yhooks';
+import { useRequest } from 'yxhooks';
 export default function App() {
   const handleQuery = async (params) => {
     const res = await axios.get(

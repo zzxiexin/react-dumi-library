@@ -1,6 +1,6 @@
 # 介绍
 
-yhooks，是一套高质量可靠的 React Hooks 库。在当前 React 项目研发过程中，一套好用的 React Hooks 库是必不可少的，希望 yhooks 能成为您的选择。
+yxhooks，是一套高质量可靠的 React Hooks 库。在当前 React 项目研发过程中，一套好用的 React Hooks 库是必不可少的，希望 yxhooks 能成为您的选择。
 
 ## 特性
 
@@ -13,13 +13,13 @@ yhooks，是一套高质量可靠的 React Hooks 库。在当前 React 项目研
 ## 安装
 
 ```bash
-$ npm install --save yhooks
+$ npm install --save yxhooks
 # or
-$ yarn add yhooks
+$ yarn add yxhooks
 # or
-$ pnpm add yhooks
+$ pnpm add yxhooks
 # or
-$ bun add yhooks
+$ bun add yxhooks
 ```
 
 ## 使用
@@ -30,4 +30,4 @@ $ bun add yhooks
 
 ## 💻 在线体验
 
-[![Edit demo for yhooks](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/demo-for-yhooks-forked-fg79k?file=/src/App.js)
+[![Edit demo for yxhooks](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/demo-for-yxhooks-forked-fg79k?file=/src/App.js)

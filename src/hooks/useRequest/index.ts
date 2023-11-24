@@ -14,8 +14,8 @@ export type ResponseData<TData> = {
   errMsg?: string;
 };
 
-export type FetchType<TParams extends any[], TData> = (
-  ...params: TParams
+export type FetchType<TData> = (
+  ...params: any[]
 ) => Promise<ResponseData<TData>>;
 
 const defConfig: TConfig<any> = {
@@ -23,11 +23,8 @@ const defConfig: TConfig<any> = {
   initParam: {},
 };
 
-const useRequest = <
-  TParams extends any[],
-  TData = { result: any; success: boolean },
->(
-  fetch: FetchType<TParams, TData>,
+const useRequest = <TData = { result: any; success: boolean }>(
+  fetch: FetchType<TData>,
   config?: TConfig<TData>,
 ) => {
   const [loading, setLoading] = useState(false);

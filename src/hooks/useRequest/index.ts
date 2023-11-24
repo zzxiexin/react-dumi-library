@@ -34,7 +34,7 @@ const useRequest = <
   const [data, setData] = useState<TData>({} as TData);
   const { isAuto, initParam, onError, onSuccess } = { ...defConfig, ...config };
   const query = useCallback(
-    async (...params: TParams) => {
+    async (...params: any[]) => {
       try {
         if (loading) {
           return alert('不要重复请求');

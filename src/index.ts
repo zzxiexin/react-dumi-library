@@ -2,8 +2,7 @@
 export { default as Button } from './components/Button';
 
 // Hooks
-export { default as useClickAnyway } from './hooks/useClickAnyway';
-export { default as useQuery } from './hooks/useQuery';
+export { default as useRequest } from './hooks/useRequest';
 export { default as useTable } from './hooks/useTable';
 
 // utils

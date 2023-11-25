@@ -4,30 +4,29 @@ import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import * as styleConfigs from '../utils';
 
-type ButtonProps = React.HTMLAttributes<
-  HTMLAnchorElement | HTMLButtonElement
-> & {
-  /**按钮类型 */
-  type?: 'primary' | 'dashed' | 'default' | 'danger' | 'link' | 'text';
-  /**按钮大小 */
-  size: 'large' | 'default' | 'small';
-  /** 禁用 */
-  disabled?: boolean;
-  /** 防抖点击  */
-  debounce?: number | boolean;
-  debounceNode: React.ReactNode;
-  /** 幽灵按钮 */
-  ghost?: boolean;
-  /** 块级按钮 */
-  block?: boolean;
-  children?: React.ReactNode;
-  /** icon图标 */
-  icon?: React.ReactNode;
-  /**加载态 */
-  loading?: boolean;
-  /**形状 */
-  shape?: 'circle';
-};
+type ButtonProps = React.HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> &
+  Partial<{
+    /**按钮类型 */
+    type: 'primary' | 'dashed' | 'default' | 'danger' | 'link' | 'text';
+    /**按钮大小 */
+    size: 'large' | 'default' | 'small';
+    /** 禁用 */
+    disabled: boolean;
+    /** 防抖点击  */
+    debounce: number | boolean;
+    debounceNode: React.ReactNode;
+    /** 幽灵按钮 */
+    ghost: boolean;
+    /** 块级按钮 */
+    block: boolean;
+    children: React.ReactNode;
+    /** icon图标 */
+    icon: React.ReactNode;
+    /**加载态 */
+    loading: boolean;
+    /**形状 */
+    shape: 'circle';
+  }>;
 
 const StyledButton = styled.button`
   border: 1px solid transparent;
@@ -244,7 +243,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       ...rest
     } = props;
 
-    const [canClick, setCanClick] = useState<boolean>(true);
+    const [canClick, setCanClick] = useState(true);
 
     /**防抖点击处理 */
     const handleDebounceClick = (e: any) => {

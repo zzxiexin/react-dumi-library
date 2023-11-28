@@ -13,7 +13,7 @@ export default function App() {
       </Button>
       <Button
         type="primary"
-        loadin={false}
+        loading={false}
         onClick={() => console.log('loading完毕可以点击')}
       >
         加载完毕

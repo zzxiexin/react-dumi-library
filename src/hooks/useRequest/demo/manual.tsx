@@ -26,7 +26,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => query({ b: 2 })}>
-        取消默认请求，点击发起手动请求
+        取消默认请求，手动发起请求
         {loading ? <SyncOutlined spin /> : null}
       </button>
       <div>data: {JSON.stringify(data)}</div>

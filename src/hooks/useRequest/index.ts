@@ -1,62 +1,65 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useCallback, useEffect, useState } from 'react';
 
-export type TConfig<TData> = Partial<{
+export type ReqConfig<Res> = Partial<{
   isAuto: boolean;
-  initParam: any;
-  onSuccess: (arg: TData) => void;
-  onError: (error: Error | ResponseData<any>) => void;
+  initParam: Record<string, any>;
+  onSuccess: (arg: Res) => void;
+  onError: (error: Error) => void;
 }>;
 
-export type ResponseData<TData> = {
-  data: TData;
+export type Response<Res> = {
+  data: Res;
   success: boolean;
-  errMsg?: string;
+  msg?: string;
 };
 
-export type FetchType<TData> = (
-  ...params: any[]
-) => Promise<ResponseData<TData>>;
+export type FetchType<Res> = (...params: any[]) => Promise<Response<Res>>;
 
-const defConfig: TConfig<any> = {
+const defConfig: ReqConfig<any> = {
   isAuto: true,
   initParam: {},
 };
 
-const useRequest = <TData = { result: any; success: boolean }>(
-  fetch: FetchType<TData>,
-  config?: TConfig<TData>,
+const useRequest = <Res = any>(
+  fetch: FetchType<Res>,
+  config?: ReqConfig<Res>,
 ) => {
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<TData>({} as TData);
+  const [data, setData] = useState<Res>({} as Res);
   const { isAuto, initParam, onError, onSuccess } = { ...defConfig, ...config };
+
+  const handleError = (error: Error) => {
+    console.log(error);
+    setLoading(false);
+    if (onError && typeof onError === 'function') {
+      onError(error as Error);
+    }
+  };
+
   const query = useCallback(
     async (...params: any[]) => {
       try {
         if (loading) {
-          return alert('不要重复请求');
+          console.log('不要重复请求');
+          return;
         }
         setLoading(true);
-        setData({} as TData);
+        setData({} as Res);
         try {
           const res = await fetch(...params);
           if (res?.success) {
             setData(res?.data);
             setLoading(false);
-            return onSuccess && onSuccess(res.data);
+            return typeof onSuccess === 'function' && onSuccess?.(res.data);
           }
-          setData({} as TData);
+          setData({} as Res);
           setLoading(false);
-          if (onError) {
-            onError(res);
-          }
         } catch (error) {
-          setLoading(false);
-          return onError && onError(error as any);
+          return handleError(error as Error);
         }
       } catch (error) {
-        setLoading(false);
-        console.log(error);
+        return handleError(error as Error);
       }
     },
     [fetch, config],

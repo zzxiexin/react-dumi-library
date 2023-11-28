@@ -16,7 +16,7 @@ demo:
 
 ### 默认用法（自动请求）
 
-`useRequest` 的第一个参数是一个异步函数，在组件初次加载时，会自动触发该函数执行。同时自动管理该异步函数的 `loading` , `data` , `query` 等状态。
+`useRequest` 的第一个参数是一个异步函数，在组件初次加载时，会自动触发该函数执行。同时自动管理该异步函数的 `loading` , `data` , `query` 等状态。且在请求没有返回时，做了防抖，不会触发多余的点击。
 getTask为异步请求函数， 对于getTask异步请求，需统一成下面这种（主要是对于不同项目返回结构不同的处理）:
 
 ```js
@@ -30,7 +30,7 @@ const getTask = async (...params) => {
   }
   return {
     success: false,
-    errMsg: res?.xxxx,
+    msg: res?.xxxx,
   };
 };
 

@@ -1,20 +1,31 @@
 import { SyncOutlined } from '@ant-design/icons';
 import clsx from 'clsx';
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import * as styleConfigs from '../utils';
 
-type ButtonProps = React.HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> &
+export type ButtonType =
+  | 'primary'
+  | 'dashed'
+  | 'default'
+  | 'danger'
+  | 'link'
+  | 'text';
+
+export type ButtonSize = 'large' | 'default' | 'small';
+
+export type ButtonDebounce = number | boolean;
+
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   Partial<{
     /**按钮类型 */
-    type: 'primary' | 'dashed' | 'default' | 'danger' | 'link' | 'text';
+    type: ButtonType;
     /**按钮大小 */
-    size: 'large' | 'default' | 'small';
+    size: ButtonSize;
     /** 禁用 */
     disabled: boolean;
     /** 防抖点击  */
-    debounce: number | boolean;
-    debounceNode: React.ReactNode;
+    debounce: ButtonDebounce;
     /** 幽灵按钮 */
     ghost: boolean;
     /** 块级按钮 */
@@ -26,6 +37,8 @@ type ButtonProps = React.HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> &
     loading: boolean;
     /**形状 */
     shape: 'circle';
+    /**点击 */
+    onClick: (event: any) => void;
   }>;
 
 const StyledButton = styled.button`
@@ -220,9 +233,9 @@ const StyledButton = styled.button`
   }
 `;
 
-/**处理debounce设置为true */
-const handleDebounceBool = (debounce: number | boolean | undefined) =>
-  debounce ? (typeof debounce === 'boolean' ? 1 : debounce) : null;
+/**处理debounce设置为true时默认值 */
+const handleDebounceBool = (debounce: ButtonDebounce) =>
+  debounce ? (typeof debounce === 'boolean' ? 1 : debounce) : 0;
 
 /** 按钮 */
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -231,8 +244,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       type = 'default-btn',
       size = 'default',
       disabled,
-      debounce,
-      debounceNode = `${handleDebounceBool(debounce)}s后可点击`,
+      debounce = 0,
       ghost,
       loading,
       block,
@@ -244,29 +256,34 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     } = props;
 
     const [canClick, setCanClick] = useState(true);
+    const [count, setCount] = useState(0);
 
     /**防抖点击处理 */
     const handleDebounceClick = (e: any) => {
-      // 防抖中和不在加载中才可以点击
-      if (canClick && !loading && !disabled) {
-        onClick?.(e);
-        if (debounce) {
-          let time = 0;
-          time = debounce
-            ? typeof debounce === 'boolean'
-              ? 1000
-              : debounce * 1000
-            : 0;
-          setCanClick(false);
-          setTimeout(() => {
-            setCanClick(true);
-          }, time as number);
+      if (!canClick || loading || disabled) {
+        return;
+      }
+      onClick?.(e);
+      if (debounce) {
+        let time = handleDebounceBool(debounce);
+        setCanClick(false);
+        if (typeof time === 'number' && time > 0) {
+          setCount(time);
+          const timer = setInterval(() => {
+            time = time - 1;
+            setCount(time);
+            if (time === 0) {
+              setCanClick(true);
+              clearInterval(timer);
+              return;
+            }
+          }, 1000);
         }
       }
     };
 
     /**按钮内容展示 */
-    const contentRender = useCallback(() => {
+    const contentRender = () => {
       return (
         <>
           {loading ? <SyncOutlined spin style={{ marginRight: 5 }} /> : null}
@@ -274,7 +291,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           {children}
         </>
       );
-    }, []);
+    };
 
     return (
       <StyledButton
@@ -291,7 +308,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           },
         ])}
       >
-        {canClick ? contentRender() : debounceNode}
+        {canClick ? contentRender() : <div>{count}s后可点击</div>}
       </StyledButton>
     );
   },

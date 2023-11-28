@@ -16,6 +16,7 @@ export default function App() {
     }
     return {
       success: false,
+      msg: '请求失败',
       data: {},
     };
   };
@@ -25,7 +26,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => query({ b: 2 })}>
-        默认请求，点击发起手动请求
+        默认请求，点击重新请求
         {loading ? <SyncOutlined spin /> : null}
       </button>
       <div>data: {JSON.stringify(data)}</div>

@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkreact_ui_dumi_library=self.webpackChunkreact_ui_dumi_library||[]).push([[9],{65149:function(f,a,e){e.r(a),e.d(a,{default:function(){return d}});var r=e(49814),t=e(67294),u=function(){var m=(0,r.UO)(),o=m.id,i=(0,r.WF)(),s=i.demos,c=s[o]||{},n=c.component;return n&&(0,t.createElement)(n)},d=u}}]);

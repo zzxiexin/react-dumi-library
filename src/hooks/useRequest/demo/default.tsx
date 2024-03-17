@@ -21,7 +21,7 @@ export default function App() {
     };
   };
   const { data, loading, query } = useRequest(handleQuery, {
-    initParam: { a: 1 },
+    manual: { a: 1 },
   });
   return (
     <>

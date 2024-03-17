@@ -20,8 +20,8 @@ export default function App() {
     };
   };
   const { data, loading, query } = useRequest(handleQuery, {
-    initParam: { a: 1 },
-    isAuto: false,
+    init: { a: 1 },
+    manual: false,
   });
   return (
     <>

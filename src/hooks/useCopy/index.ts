@@ -1,6 +1,6 @@
-import { ReactInstance, useEffect, useState } from 'react';
+import { MutableRefObject, useEffect, useState } from 'react';
 
-const useCopy = (dom: ReactInstance<any>) => {
+const useCopy = (dom: MutableRefObject<any>) => {
   const [text, setText] = useState('');
   useEffect(() => {
     dom?.current?.addEventListener('contextmenu', function (event: any) {

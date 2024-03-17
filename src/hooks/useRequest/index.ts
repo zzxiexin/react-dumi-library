@@ -2,8 +2,8 @@
 import { useCallback, useEffect, useState } from 'react';
 
 export type ReqConfig<Res> = Partial<{
-  isAuto: boolean;
-  initParam: Record<string, any>;
+  manual: boolean;
+  init: Record<string, any>;
   onSuccess: (arg: Res) => void;
   onError: (error: Error) => void;
 }>;
@@ -17,8 +17,8 @@ export type Response<Res> = {
 export type FetchType<Res> = (...params: any[]) => Promise<Response<Res>>;
 
 const defConfig: ReqConfig<any> = {
-  isAuto: true,
-  initParam: {},
+  manual: false,
+  init: {},
 };
 
 const useRequest = <Res = any>(
@@ -27,7 +27,7 @@ const useRequest = <Res = any>(
 ) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<Res>({} as Res);
-  const { isAuto, initParam, onError, onSuccess } = { ...defConfig, ...config };
+  const { manual, init, onError, onSuccess } = { ...defConfig, ...config };
 
   const handleError = (error: Error) => {
     console.log(error);
@@ -51,7 +51,10 @@ const useRequest = <Res = any>(
           if (res?.success) {
             setData(res?.data);
             setLoading(false);
-            return typeof onSuccess === 'function' && onSuccess?.(res.data);
+            if (typeof onSuccess === 'function') {
+              onSuccess?.(res.data);
+            }
+            return;
           }
           setData({} as Res);
           setLoading(false);
@@ -66,8 +69,8 @@ const useRequest = <Res = any>(
   );
 
   useEffect(() => {
-    if (isAuto) {
-      query(initParam);
+    if (manual) {
+      query(init);
     }
   }, []);
 

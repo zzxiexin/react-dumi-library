@@ -14,7 +14,8 @@ demo:
 
 ### 默认用法
 
-`useTable` 的第一个参数是一个异步函数，用来请求table的接口且返回指定结构{data: TData[], total: number}的异步方法, 第二个参数则是基础的一些配置项, 支持tableProps的所有参数, 如需要设置默认分页参数pagination: { current: 1, pageSize: 20 }, 其他参数依次配置即可：
+`useTable` 的第一个参数是一个异步函数，用来请求table的接口且返回指定结构{data: TData[], total: number}的异步方法;  
+第二个参数则是基础的一些配置项, 支持tableProps的所有参数, 如需要设置默认分页参数pagination: { current: 1, pageSize: 20 }, 其他参数依次配置即可：
 
 <code src="./demo/default.tsx"></code>
 
@@ -26,22 +27,20 @@ demo:
 
 ### API
 
-| 参数    | 说明                    | 类型                                                                           | 默认值      |
-| ------- | ----------------------- | ------------------------------------------------------------------------------ | ----------- |
-| fetch   | 异步请求table数据的方法 | (current: number, pageSize: number) => Promise<{data: TData[], total: number}> | TData = any |
-| options | 请求的配置项            | TableProps & { manual: boolean,isRowSelect: boolean, remeberRow:boolean }      |
+| 参数    | 说明                    | 类型                                                                           | 默认值         |
+| ------- | ----------------------- | ------------------------------------------------------------------------------ | -------------- |
+| fetch   | 异步请求table数据的方法 | (current: number, pageSize: number) => Promise<{data: TData[], total: number}> | TData = any    |
+| options | 请求的配置项            | TableProps & { manual: boolean,isRowSelect: boolean, remeberRow:boolean }      | 默认值参考下方 |
 
-{
-manual: false,
-isRowSelect: false,
-remeberRow: false,
-pagination: {
-current: 1,
-pageSize: 10,
-showSizeChanger: true,
-showQuickJumper: true,
-showTotal: (total: number) => `总共${total}条数据`,
-pageSizeOptions: ['10', '25', '50', '100'],
-},
-}
-|
+    {
+      "manual": false,
+      "isRowSelect": false,
+      "remeberRow": false,
+      "pagination": {
+        "current": 1,
+        "pageSize": 10,
+        "showSizeChanger": true,
+        "showQuickJumper": true,
+        "pageSizeOptions": ["10", "25", "50", "100"]
+      }
+    }

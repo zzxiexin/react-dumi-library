@@ -16,20 +16,10 @@ demo:
 
 `useCopy` 的第一个参数是一个ref，用来指向需要右机复制的元素，简单使用如下：
 
-```markdown
-<div ref={ref} style={{ background: "gray", width: 100, height:100 }}>
-  我是需要复制的内容
-</div>
-```
-
-```js
-const { text } = useCopy(ref);
-```
-
 <code src="./demo/default.tsx"></code>
 
 ### API
 
-| 参数 | 说明                | 类型          | 默认值 |
-| ---- | ------------------- | ------------- | ------ |
-| ref  | 需要复制的内容的ref | ReactInstance | --     |
+| 参数 | 说明                     | 类型             | 默认值 |
+| ---- | ------------------------ | ---------------- | ------ |
+| ref  | 需要复制的内容的dom的ref | MutableRefObject | --     |

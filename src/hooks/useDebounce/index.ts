@@ -2,7 +2,7 @@ type Fn = (...args: any[]) => void;
 type Delay = number;
 
 const useDebounce = (fn: Fn, delay: Delay = 1) => {
-  let timer: any = null;
+  let timer: ReturnType<typeof setTimeout> | null = null;
   return function (...args: any[]) {
     if (timer) {
       clearTimeout(timer);

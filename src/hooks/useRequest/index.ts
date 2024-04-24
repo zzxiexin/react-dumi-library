@@ -6,6 +6,7 @@ export type ReqConfig<Res> = Partial<{
   init: Record<string, any>;
   onSuccess: (arg: Res) => void;
   onError: (error: Error) => void;
+  onRepeat: () => void;
 }>;
 
 export type Response<Res> = {
@@ -21,13 +22,16 @@ const defConfig: ReqConfig<any> = {
   init: {},
 };
 
-const useRequest = <Res = any>(
+const useRequest = <Res = object>(
   fetch: FetchType<Res>,
   config?: ReqConfig<Res>,
 ) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<Res>({} as Res);
-  const { manual, init, onError, onSuccess } = { ...defConfig, ...config };
+  const { manual, init, onError, onSuccess, onRepeat } = {
+    ...defConfig,
+    ...config,
+  };
 
   const handleError = (error: Error) => {
     console.log(error);
@@ -41,6 +45,7 @@ const useRequest = <Res = any>(
     async (...params: any[]) => {
       try {
         if (loading) {
+          onRepeat?.();
           console.log('不要重复请求');
           return;
         }

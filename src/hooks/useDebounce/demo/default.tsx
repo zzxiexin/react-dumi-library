@@ -8,7 +8,7 @@ export default function App() {
     setContent(args);
   };
 
-  const b = useDebounce(a);
+  const b = useDebounce(a, 2);
 
   useEffect(() => {
     b(1, 2, 3);

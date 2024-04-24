@@ -60,9 +60,10 @@ onError 默认是alert，当请求出现错误时，会alert出错误，如想�
 
 ### API
 
-| 参数      | 说明     | 类型      | 默认值                                 |
-| --------- | -------- | --------- | -------------------------------------- |
-| manual    | 自动请求 | boolean   | true                                   |
-| init      | 初始参数 | any       | {}                                     |
-| onSuccess | 成功回调 | undefined | (arg: Res<Record<string,any>>) => void |
-| onError   | 失败回调 | undefined | (error) => void                        |
+| 参数      | 说明         | 类型      | 默认值                                 |
+| --------- | ------------ | --------- | -------------------------------------- |
+| manual    | 自动请求     | boolean   | true                                   |
+| init      | 初始参数     | any       | {}                                     |
+| onSuccess | 成功回调     | undefined | (arg: Res<Record<string,any>>) => void |
+| onError   | 失败回调     | undefined | (error) => void                        |
+| onRepeat  | 重复请求回调 | undefined | (error) => void                        |

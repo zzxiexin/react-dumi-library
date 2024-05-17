@@ -7,7 +7,7 @@ export default defineConfig({
   themeConfig: {
     name: 'yxhooks',
   },
-  cssMinifier: 'cssnano',
+  jsMinifier: 'terser',
   resolve: {
     atomDirs: [
       { type: 'component', dir: './src/components' },

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyxhooks=self.webpackChunkyxhooks||[]).push([[232],{70714:function(t,u,n){n.r(u),n.d(u,{demos:function(){return o}});var s=n(67294),o={}},49826:function(t,u,n){n.r(u),n.d(u,{texts:function(){return s}});const s=[]}}]);

@@ -4,6 +4,9 @@ export default defineConfig({
   base: '/yxhooks/',
   publicPath: '/yxhooks/',
   outputPath: 'docs-dist',
+  jsMinifierOptions: {
+    target: ['chrome80', 'es2020'],
+  },
   themeConfig: {
     name: 'yxhooks',
   },

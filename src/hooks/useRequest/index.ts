@@ -22,7 +22,7 @@ const defConfig: ReqConfig<any> = {
   init: {},
 };
 
-const useRequest = <Res = object>(
+const useRequest = <Res = any>(
   fetch: FetchType<Res>,
   config?: ReqConfig<Res>,
 ) => {

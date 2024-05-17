@@ -13,7 +13,7 @@ export default function App() {
     },
   };
 
-  const b = useDebounce(obj.b, 2, obj);
+  const b = useDebounce(obj.b, 1, obj);
 
   useEffect(() => {
     b(1, 2, 3);

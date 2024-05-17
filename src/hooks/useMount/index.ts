@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 const useMount = function (fn: () => any) {
   useEffect(function () {
     if (fn && typeof fn === 'function') {
-      fn();
+      fn?.();
     }
   }, []);
 };

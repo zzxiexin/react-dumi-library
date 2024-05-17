@@ -8,7 +8,7 @@ export default function App() {
     setContent(args);
   };
 
-  const b = useThrottle(a, 5);
+  const b = useThrottle(a, 1);
 
   useEffect(() => {
     setTimeout(() => {
@@ -19,13 +19,10 @@ export default function App() {
     }, 1500);
     setTimeout(() => {
       b(1, 2, 3, 4, 5);
-    }, 2500);
-    setTimeout(() => {
-      b(1, 2, 3, 4, 5);
-    }, 5100);
+    }, 3000);
     setTimeout(() => {
       b(1, 2, 3, 4, 5, 6);
-    }, 11000);
+    }, 3500);
   }, []);
 
   return <div>{JSON.stringify(content)}</div>;

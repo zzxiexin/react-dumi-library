@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
-import { useClick } from 'yxhooks';
+import React, { useRef, useState } from 'react';
+import { useClickAny } from 'yxhooks';
 
 export default function App() {
   const ref = useRef(null);
-  const { count } = useClick(ref);
+  const [count, setCount] = useState(0);
+  useClickAny(() => setCount((preCount) => preCount + 1), ref);
   return (
     <div className="App">
       <div ref={ref} style={{ background: 'gray', width: 100, height: 100 }}>

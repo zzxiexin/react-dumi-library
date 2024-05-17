@@ -14,7 +14,7 @@ demo:
 
 ### 用法
 
-`useDebounce` 的第一个参数是一个fn，第二个参数则是防抖的时间, 第三个参数则是需要函数执行绑定的对象, 防止函数内部有this,简单使用如下：
+`useDebounce` 的第一个参数是一个fn，第二个参数则是防抖的时间, 第三个参数则是需要函数执行绑定的对象, 防止函数内部需要调用this,简单使用如下：
 
 <code src="./demo/default.tsx"></code>
 
@@ -30,4 +30,4 @@ demo:
 | ----- | -------------------- | ------------------------ | ------ |
 | fn    | 需要做防抖处理的函数 | (...args: any[]) => void | --     |
 | delay | 防抖的时间           | number                   | 1s     |
-| obj   | 防抖的时间           | object                   | window |
+| obj   | this对象             | object                   | window |

@@ -14,7 +14,7 @@ demo:
 
 ### 用法
 
-`useDebounce` 的第一个参数是一个fn，第二个参数则是节流的时间，简单使用如下：
+`useThrottle` 的第一个参数是一个fn，第二个参数则是节流的时间，简单使用如下：
 
 <code src="./demo/default.tsx"></code>
 

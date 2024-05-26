@@ -6,7 +6,7 @@
  * @param {HTMLElement} [{ target = document.body }={}]
  * @return {boolean}
  */
-export default function copy(text, { target = document.body } = {}) {
+export default function copy(text: string, { target = document.body } = {}) {
   const element = document.createElement('textarea');
   const previouslyFocusedElement: HTMLElement =
     document.activeElement as HTMLElement;

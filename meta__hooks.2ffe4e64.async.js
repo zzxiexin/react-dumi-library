@@ -29,10 +29,10 @@ const { data, query, loading } = useRequest(getTask);
 });
 `,paraId:5,tocIndex:2},{value:"onError \u9ED8\u8BA4\u662Falert\uFF0C\u5F53\u8BF7\u6C42\u51FA\u73B0\u9519\u8BEF\u65F6\uFF0C\u4F1Aalert\u51FA\u9519\u8BEF\uFF0C\u5982\u60F3\u8981\u81EA\u5B9A\u4E49\u9519\u8BEF\u7684\u5904\u7406\uFF0C\u4F20\u5165onError\uFF0C\u8BE5\u65B9\u6CD5\u4F1A\u63A5\u53D7\u8BF7\u6C42\u65F6catch\u5230\u7684error\uFF1BonSuccess\u5219\u4F1A\u63A5\u53D7\u8BF7\u6C42\u6210\u529F\u540E\u7684\u6570\u636E\u548Csuccess\uFF1B",paraId:6,tocIndex:3},{value:`
 \u4E0A\u9762\u4E24\u4E2A\u4F8B\u5B50\uFF0C\u6211\u4EEC\u6F14\u793A\u4E86 `,paraId:7},{value:"useRequest",paraId:7},{value:" \u6700\u57FA\u7840\u7684\u7528\u6CD5\uFF0C\u63A5\u4E0B\u6765\u7684\u6211\u4EEC\u5F00\u59CB\u9010\u4E2A\u8BE6\u7EC6\u4ECB\u7ECD ",paraId:7},{value:"useRequest",paraId:7},{value:" \u7684\u7279\u6027\u3002",paraId:7},{value:"\u53C2\u6570",paraId:8,tocIndex:4},{value:"\u8BF4\u660E",paraId:8,tocIndex:4},{value:"\u7C7B\u578B",paraId:8,tocIndex:4},{value:"\u9ED8\u8BA4\u503C",paraId:8,tocIndex:4},{value:"manual",paraId:8,tocIndex:4},{value:"\u81EA\u52A8\u8BF7\u6C42",paraId:8,tocIndex:4},{value:"boolean",paraId:8,tocIndex:4},{value:"true",paraId:8,tocIndex:4},{value:"init",paraId:8,tocIndex:4},{value:"\u521D\u59CB\u53C2\u6570",paraId:8,tocIndex:4},{value:"any",paraId:8,tocIndex:4},{value:"{}",paraId:8,tocIndex:4},{value:"onSuccess",paraId:8,tocIndex:4},{value:"\u6210\u529F\u56DE\u8C03",paraId:8,tocIndex:4},{value:"undefined",paraId:8,tocIndex:4},{value:"(arg: Res<Record<string,any>>) => void",paraId:8,tocIndex:4},{value:"onError",paraId:8,tocIndex:4},{value:"\u5931\u8D25\u56DE\u8C03",paraId:8,tocIndex:4},{value:"undefined",paraId:8,tocIndex:4},{value:"(error) => void",paraId:8,tocIndex:4},{value:"onRepeat",paraId:8,tocIndex:4},{value:"\u91CD\u590D\u8BF7\u6C42\u56DE\u8C03",paraId:8,tocIndex:4},{value:"undefined",paraId:8,tocIndex:4},{value:"(error) => void",paraId:8,tocIndex:4}]},67111:function(r,t,e){"use strict";e.r(t),e.d(t,{texts:function(){return a}});const a=[{value:"useTable",paraId:0,tocIndex:0},{value:" \u662F\u4E00\u4E2A\u5904\u7406table\u7684\u8BF7\u6C42\u4E14\u8FD4\u56DEtable\u6240\u9700\u6570\u636E\u7684hook\u3002",paraId:0,tocIndex:0},{value:"useTable",paraId:1,tocIndex:1},{value:" \u7684\u7B2C\u4E00\u4E2A\u53C2\u6570\u662F\u4E00\u4E2A\u5F02\u6B65\u51FD\u6570\uFF0C\u7528\u6765\u8BF7\u6C42table\u7684\u63A5\u53E3\u4E14\u8FD4\u56DE\u6307\u5B9A\u7ED3\u6784{data: TData[], total: number}\u7684\u5F02\u6B65\u65B9\u6CD5;",paraId:1,tocIndex:1},{value:`
-\u7B2C\u4E8C\u4E2A\u53C2\u6570\u5219\u662F\u57FA\u7840\u7684\u4E00\u4E9B\u914D\u7F6E\u9879, \u652F\u6301tableProps\u7684\u6240\u6709\u53C2\u6570, \u5982\u9700\u8981\u8BBE\u7F6E\u9ED8\u8BA4\u5206\u9875\u53C2\u6570pagination: { current: 1, pageSize: 20 }, \u5176\u4ED6\u53C2\u6570\u4F9D\u6B21\u914D\u7F6E\u5373\u53EF\uFF1A`,paraId:1,tocIndex:1},{value:"\u914D\u7F6E\u9879\u652F\u6301tableProps\u7684\u6240\u6709\u5C5E\u6027, \u5E38\u7528\u7684pagination\u3001bordered\u3001footer\u3001title\u7B49, \u540C\u65F6\u53C8\u65B0\u589E\u4E86isRowSelect\u3001 remeberRow\u5C5E\u6027,\u8FD9\u4E24\u4E2A\u5C5E\u6027\u4E3B\u8981\u7528\u4E8E\u8BBE\u7F6Etable\u7684\u9009\u4E2D\u9879,\u4EE5\u53CA\u5BF9\u4E8E\u5206\u9875\u662F\u5426\u9700\u8981\u8BB0\u4F4F\u9009\u62E9\u9879",paraId:2,tocIndex:2},{value:"\u53C2\u6570",paraId:3,tocIndex:3},{value:"\u8BF4\u660E",paraId:3,tocIndex:3},{value:"\u7C7B\u578B",paraId:3,tocIndex:3},{value:"\u9ED8\u8BA4\u503C",paraId:3,tocIndex:3},{value:"fetch",paraId:3,tocIndex:3},{value:"\u5F02\u6B65\u8BF7\u6C42table\u6570\u636E\u7684\u65B9\u6CD5",paraId:3,tocIndex:3},{value:"(current: number, pageSize: number) => Promise<{data: TData[], total: number}>",paraId:3,tocIndex:3},{value:"TData = any",paraId:3,tocIndex:3},{value:"options",paraId:3,tocIndex:3},{value:"\u8BF7\u6C42\u7684\u914D\u7F6E\u9879",paraId:3,tocIndex:3},{value:"TableProps & { manual: boolean,isRowSelect: boolean, remeberRow:boolean }",paraId:3,tocIndex:3},{value:"\u9ED8\u8BA4\u503C\u53C2\u8003\u4E0B\u65B9",paraId:3,tocIndex:3},{value:`{
+\u7B2C\u4E8C\u4E2A\u53C2\u6570\u5219\u662F\u57FA\u7840\u7684\u4E00\u4E9B\u914D\u7F6E\u9879, \u652F\u6301tableProps\u7684\u6240\u6709\u53C2\u6570, \u5982\u9700\u8981\u8BBE\u7F6E\u9ED8\u8BA4\u5206\u9875\u53C2\u6570pagination: { current: 1, pageSize: 20 }, \u5176\u4ED6\u53C2\u6570\u4F9D\u6B21\u914D\u7F6E\u5373\u53EF\uFF1A`,paraId:1,tocIndex:1},{value:"\u914D\u7F6E\u9879\u652F\u6301tableProps\u7684\u6240\u6709\u5C5E\u6027, \u5E38\u7528\u7684pagination\u3001bordered\u3001footer\u3001title\u7B49, \u540C\u65F6\u53C8\u65B0\u589E\u4E86isRowSelect\u3001 remeberRow\u5C5E\u6027,\u8FD9\u4E24\u4E2A\u5C5E\u6027\u4E3B\u8981\u7528\u4E8E\u8BBE\u7F6Etable\u7684\u9009\u4E2D\u9879,\u4EE5\u53CA\u5BF9\u4E8E\u5206\u9875\u662F\u5426\u9700\u8981\u8BB0\u4F4F\u9009\u62E9\u9879",paraId:2,tocIndex:2},{value:"\u53C2\u6570",paraId:3,tocIndex:3},{value:"\u8BF4\u660E",paraId:3,tocIndex:3},{value:"\u7C7B\u578B",paraId:3,tocIndex:3},{value:"\u9ED8\u8BA4\u503C",paraId:3,tocIndex:3},{value:"fetch",paraId:3,tocIndex:3},{value:"\u5F02\u6B65\u8BF7\u6C42table\u6570\u636E\u7684\u65B9\u6CD5",paraId:3,tocIndex:3},{value:"(current: number, pageSize: number) => Promise<{data: TData[], total: number}>",paraId:3,tocIndex:3},{value:"TData = any",paraId:3,tocIndex:3},{value:"options",paraId:3,tocIndex:3},{value:"\u8BF7\u6C42\u7684\u914D\u7F6E\u9879",paraId:3,tocIndex:3},{value:"TableProps & { manual: boolean,canSelect: boolean, remeberSelect:boolean }",paraId:3,tocIndex:3},{value:"\u9ED8\u8BA4\u503C\u53C2\u8003\u4E0B\u65B9",paraId:3,tocIndex:3},{value:`{
   "manual": false,
-  "isRowSelect": false,
-  "remeberRow": false,
+  "canSelect": false,
+  "remeberSelect": false,
   "pagination": {
     "current": 1,
     "pageSize": 10,
@@ -301,7 +301,7 @@ export default function App() {
   );
 }
 `},56503:function(r,t){"use strict";t.Z=`import { Button, Table } from 'antd';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTable } from 'yxhooks';
 
 export default function App() {
@@ -322,19 +322,16 @@ export default function App() {
   };
   const { tableProps, selectRowsKeys, reset, renew } = useTable(getTableData, {
     bordered: true,
-    isRowSelect: true,
-    remeberRow: true,
+    canSelect: true,
+    remeberSelect: true,
     manual: true,
     pagination: {
       current: 1,
       pageSize: 20,
-      showTotal: (total) => \`\u6539\u4E2A\u7EDF\u8BA1\${total}\u8BD5\u8BD5\`,
+      showTotal: (total) => \`\u81EA\u5B9A\u4E49\u7EDF\u8BA1\u6587\u6848\${total}\u8BD5\u8BD5\`,
     },
   });
 
-  useEffect(() => {
-    renew();
-  }, []);
   console.log('selectRowsKeys', selectRowsKeys);
   return (
     <div className="App">

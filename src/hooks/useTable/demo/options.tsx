@@ -1,5 +1,5 @@
 import { Button, Table } from 'antd';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTable } from 'yxhooks';
 
 export default function App() {
@@ -20,19 +20,16 @@ export default function App() {
   };
   const { tableProps, selectRowsKeys, reset, renew } = useTable(getTableData, {
     bordered: true,
-    isRowSelect: true,
-    remeberRow: true,
+    canSelect: true,
+    remeberSelect: true,
     manual: true,
     pagination: {
       current: 1,
       pageSize: 20,
-      showTotal: (total) => `改个统计${total}试试`,
+      showTotal: (total) => `自定义统计文案${total}试试`,
     },
   });
 
-  useEffect(() => {
-    renew();
-  }, []);
   console.log('selectRowsKeys', selectRowsKeys);
   return (
     <div className="App">

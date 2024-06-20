@@ -30,12 +30,12 @@ demo:
 | 参数    | 说明                    | 类型                                                                           | 默认值         |
 | ------- | ----------------------- | ------------------------------------------------------------------------------ | -------------- |
 | fetch   | 异步请求table数据的方法 | (current: number, pageSize: number) => Promise<{data: TData[], total: number}> | TData = any    |
-| options | 请求的配置项            | TableProps & { manual: boolean,isRowSelect: boolean, remeberRow:boolean }      | 默认值参考下方 |
+| options | 请求的配置项            | TableProps & { manual: boolean,canSelect: boolean, remeberSelect:boolean }     | 默认值参考下方 |
 
     {
       "manual": false,
-      "isRowSelect": false,
-      "remeberRow": false,
+      "canSelect": false,
+      "remeberSelect": false,
       "pagination": {
         "current": 1,
         "pageSize": 10,

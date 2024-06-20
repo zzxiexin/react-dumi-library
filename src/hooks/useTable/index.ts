@@ -12,16 +12,17 @@ type Fetch<TData> = (
   pageSize: number,
 ) => Promise<ReturnType<TData>>;
 
-type OptionsType<TData> = TableProps<TData> & {
-  manual?: boolean;
-  isRowSelect?: boolean;
-  remeberRow?: boolean;
-};
+type OptionsType<TData> = TableProps<TData> &
+  Partial<{
+    manual: boolean;
+    canSelect: boolean;
+    remeberSelect: boolean;
+  }>;
 
 const defOptions = {
   manual: false,
-  isRowSelect: false,
-  remeberRow: false,
+  canSelect: false,
+  remeberSelect: false,
   pagination: {
     current: 1,
     pageSize: 10,
@@ -48,7 +49,7 @@ const useTable = <TData = any>(
   const getTable = useCallback(
     (current: number, pageSize: number) => {
       setTableProps({ ...tableProps, loading: true });
-      if (!options.remeberRow) {
+      if (!options.remeberSelect) {
         setSelectRowsKeys([]);
       }
       fetch(current, pageSize)
@@ -113,9 +114,9 @@ const useTable = <TData = any>(
         onChange: getTable,
         onShowSizeChange: getTable,
       },
-      rowSelection: options?.isRowSelect
+      rowSelection: options?.canSelect
         ? {
-            preserveSelectedRowKeys: options?.remeberRow,
+            preserveSelectedRowKeys: options?.remeberSelect,
             onChange: (selectedRowKeys: React.Key[]) => {
               setSelectRowsKeys(selectedRowKeys);
             },

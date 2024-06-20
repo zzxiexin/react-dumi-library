@@ -121,7 +121,7 @@ const useTable = <TData = any>(
             },
           }
         : null,
-    },
+    } as TableProps<TData>,
     reset,
     renew,
     selectRowsKeys,

@@ -13,6 +13,5 @@ export default defineConfig({
       { type: 'hook', dir: './src/hooks' },
       { type: 'util', dir: './src/utils' },
     ],
-    codeBlockMode: 'passive',
   },
 });
